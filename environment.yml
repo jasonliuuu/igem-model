@@ -1,0 +1,14 @@
+name: igem
+channels:
+  - conda-forge
+  - defaults
+dependencies: 
+  - python=3
+  - numpy
+  - matplotlib
+  - pylint
+  - notebook
+  - jupyterlab=1.2
+  - tqdm
+  - scikit-learn
+  - pandas
