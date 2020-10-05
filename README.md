@@ -5,8 +5,8 @@ Quick weekend project, may contain sharp edges.
 ### TODO
 
 - [ ] correctly label all the data; 
-- [x] Data pre-processing;
-- [x] train the models;
+- [x] data pre-processing;
+- [x] train the model;
 - [ ] use `scikit-learn` and its `LinearRegression` with cross validation;
 - [ ] use optimizers;
 
