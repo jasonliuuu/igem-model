@@ -56,6 +56,7 @@ _ = ax.set_xlabel('t')
 ```
 
 
+    
 ![svg](main_files/main_2_0.svg)
     
 
@@ -81,7 +82,7 @@ df
     .dataframe tbody tr th {
         vertical-align: top;
     }
-    
+
     .dataframe thead th {
         text-align: right;
     }
@@ -550,7 +551,70 @@ df
       <th>18</th>
       <td>B05</td>
       <td>0.0473</td>
-      <td>0.0480</td>-
+      <td>0.0480</td>
+      <td>0.0487</td>
+      <td>0.0489</td>
+      <td>0.0491</td>
+      <td>0.0494</td>
+      <td>0.0511</td>
+      <td>0.0526</td>
+      <td>0.0538</td>
+      <td>...</td>
+      <td>0.8917</td>
+      <td>0.8887</td>
+      <td>0.9072</td>
+      <td>0.9189</td>
+      <td>0.9215</td>
+      <td>0.9412</td>
+      <td>0.9266</td>
+      <td>0.9549</td>
+      <td>0.9657</td>
+      <td>0.9871</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>B06</td>
+      <td>0.045600001</td>
+      <td>0.0459</td>
+      <td>0.0460</td>
+      <td>0.0465</td>
+      <td>0.0467</td>
+      <td>0.0476</td>
+      <td>0.0491</td>
+      <td>0.0503</td>
+      <td>0.0515</td>
+      <td>...</td>
+      <td>0.8962</td>
+      <td>0.8838</td>
+      <td>0.8892</td>
+      <td>0.8845</td>
+      <td>0.8885</td>
+      <td>0.8863</td>
+      <td>0.8810</td>
+      <td>0.8865</td>
+      <td>0.8761</td>
+      <td>0.8840</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>B07</td>
+      <td>0.202000007</td>
+      <td>0.2207</td>
+      <td>0.2312</td>
+      <td>0.0507</td>
+      <td>0.0489</td>
+      <td>0.0504</td>
+      <td>0.0500</td>
+      <td>0.0510</td>
+      <td>0.0531</td>
+      <td>...</td>
+      <td>0.4398</td>
+      <td>0.4510</td>
+      <td>0.4430</td>
+      <td>0.4473</td>
+      <td>0.4525</td>
+      <td>0.4538</td>
+      <td>0.4736</td>
       <td>0.4658</td>
       <td>0.4620</td>
       <td>0.4732</td>
@@ -1238,7 +1302,7 @@ all_data
     .dataframe tbody tr th {
         vertical-align: top;
     }
-    
+
     .dataframe thead th {
         text-align: right;
     }
@@ -1547,7 +1611,7 @@ We can also visualize some of our experimental as follows. After connecting all 
 
 ```python
 start = 0
-ax = all_data[['A01', 'B01','C01','A07','B07','C07','$argA^{fbr}$ <antibio>']][start:].plot(style='-', figsize=(15,9))
+ax = all_data[['A01', 'B01','C01','A07','B07','C07','$argA^fbr$ <antibio>']][start:].plot(style='-', figsize=(15,9))
 markers = itertools.cycle(("o", "v", "^", "<", ">", "s", "p", "P", "*", "h", "X", "D", '.'))
 for i, line in enumerate(ax.get_lines()):
     marker = next(markers)
@@ -1556,8 +1620,9 @@ _ = ax.legend()
 ```
 
 
+    
 ![svg](main_files/main_10_0.svg)
-​    
+    
 
 
 ## Nonlinear Least Squares for $argA^{fbr}$ with Antibacterial
@@ -1579,7 +1644,7 @@ def logistic(t, a, k, N_m, offset):
 
 ```python
 p0 = np.random.random(size=4)
-bounds = (0., [10017.,3.,10019834.,10000.])
+bounds = (0., [100176.,3.,10019834.,10000.])
 ```
 
 **Use SciPy's Curve Fit for Nonlinear Least Squares Estimation.**
@@ -1608,10 +1673,10 @@ a,k,N_m,offset
 
 
 
-    (81.26777631099041,
-     0.00022831181675420664,
-     0.5963896442822748,
-     0.03403317666750181)
+    (81.26818615403548,
+     0.00022831205475778584,
+     0.5963894442011484,
+     0.03403331139255463)
 
 
 
@@ -1637,9 +1702,9 @@ plt.ylabel('Concentration')
 
 
 
-​    
+    
 ![svg](main_files/main_18_1.svg)
-​    
+    
 
 
 ## Nonlinear Least Squares for all cases
@@ -1673,9 +1738,9 @@ for group in all_data.columns[all_data.columns.get_loc('$argA^fbr$ <antibio>'):]
 ```
 
 
-​    
+    
 ![svg](main_files/main_20_0.svg)
-​    
+    
 
 
 We also display all the trained parameters in a `pandas.DataFrame`.
@@ -1688,6 +1753,8 @@ output_df
 ```
 
 
+
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1697,7 +1764,7 @@ output_df
     .dataframe tbody tr th {
         vertical-align: top;
     }
-    
+
     .dataframe thead th {
         text-align: right;
     }
@@ -1717,50 +1784,50 @@ output_df
     <tr>
       <th>0</th>
       <td>$argA^fbr$ &lt;antibio&gt;</td>
-      <td>81.264918</td>
+      <td>81.268446</td>
       <td>0.000228</td>
-      <td>0.596391</td>
-      <td>3.403226e-02</td>
+      <td>0.596389</td>
+      <td>3.403340e-02</td>
     </tr>
     <tr>
       <th>1</th>
       <td>$cysE-mut$ &lt;antibio&gt;</td>
-      <td>24.231463</td>
+      <td>24.231418</td>
       <td>0.000189</td>
       <td>0.897522</td>
-      <td>2.482377e-24</td>
+      <td>2.719961e-26</td>
     </tr>
     <tr>
       <th>2</th>
       <td>$myrcene$ &lt;antibio&gt;</td>
-      <td>60.918949</td>
+      <td>60.918889</td>
       <td>0.000218</td>
       <td>0.693091</td>
-      <td>2.001467e-02</td>
+      <td>2.001465e-02</td>
     </tr>
     <tr>
       <th>3</th>
       <td>$argA^fbr$</td>
-      <td>56.760443</td>
+      <td>56.760447</td>
       <td>0.000191</td>
       <td>0.771270</td>
-      <td>1.323635e-02</td>
+      <td>1.323637e-02</td>
     </tr>
     <tr>
       <th>4</th>
       <td>$cysE-mut$</td>
-      <td>35.515221</td>
+      <td>35.515316</td>
       <td>0.000261</td>
       <td>0.805412</td>
-      <td>1.997140e-27</td>
+      <td>1.094864e-25</td>
     </tr>
     <tr>
       <th>5</th>
       <td>$myrcene$</td>
-      <td>48.169723</td>
+      <td>48.169640</td>
       <td>0.000201</td>
-      <td>0.761659</td>
-      <td>9.799114e-03</td>
+      <td>0.761660</td>
+      <td>9.799030e-03</td>
     </tr>
   </tbody>
 </table>
@@ -1773,109 +1840,312 @@ output_df
 Given the formula of derivatives of concentrations of the three crafted e.colis,
 
 $$
-\frac {dA}{dt} = k_A \cdot A (1 - \frac {A}{N_m} - \frac{k_B}{k_A} \cdot \frac{B}{N_m} - \frac{k_C}{k_A} \cdot \frac{C}{N_m}) \\
-\frac {dB}{dt} = k_B \cdot B (1 - \frac {B}{N_m} - \frac{k_A}{k_B} \cdot \frac{A}{N_m} - \frac{k_C}{k_B} \cdot \frac{C}{N_m}) \\
-\frac {dC}{dt} = k_C \cdot C (1 - \frac {C}{N_m} - \frac{k_A}{k_C} \cdot \frac{A}{N_m} - \frac{k_B}{k_C} \cdot \frac{B}{N_m})
+\frac {dA}{dt} = k_A \cdot A (1 - \frac {A}{N_1} - \frac{k_B}{k_A} \cdot \frac{B}{N_2} - \frac{k_C}{k_A} \cdot \frac{C}{N_3}) = k_A \cdot A (1 - \frac {A}{N_1}) - \frac{k_B}{N_2} \cdot AB - \frac{k_C}{N_3} \cdot AC \\
+\frac {dB}{dt} = k_B \cdot B (1 - \frac {B}{N_2} - \frac{k_A}{k_B} \cdot \frac{A}{N_1} - \frac{k_C}{k_B} \cdot \frac{C}{N_3}) = k_B \cdot B (1 - \frac {B}{N_2}) - \frac{k_A}{N_1} \cdot BA - \frac{k_C}{N_3} \cdot BC \\
+\frac {dC}{dt} = k_C \cdot C (1 - \frac {C}{N_3} - \frac{k_A}{k_C} \cdot \frac{A}{N_1} - \frac{k_B}{k_C} \cdot \frac{B}{N_2}) = k_C \cdot C (1 - \frac {C}{N_3}) - \frac{k_A}{N_1} \cdot AC - \frac{k_B}{N_2} \cdot BC
 $$
 
-we plot the curve of growth rate and concentrations of three crafted e.coli with and without the effect of antibacterial. In addition, for e.coli, we also mark the effective time on the plot. 
+we plot the curve of growth rate and concentrations of three crafted
+e.coli with and without the effect of antibacterial.
 
 
 ```python
-k1, k2, k3, k4, k5, k6 = ret_data['k']
-t = np.linspace(0,21000,80)
-zero = np.linspace(0,0,1000)
-quick_logistic = lambda t,scale=1:scale*logistic(t, ret_data['a'][0],ret_data['k'][0], ret_data['N_m'][0], ret_data['offset'][0])
+from scipy.integrate import odeint
+from scipy.optimize import leastsq
+```
 
-derivative = lambda t,i,k1,k2,k3,scale=1: k1 * quick_logistic(t,scale) * (1- quick_logistic(t,scale)/ret_data['N_m'][i]-(k2/k1)*(quick_logistic(t,scale)/ret_data['N_m'][i])-(k3/k1)*(quick_logistic(t,scale)/ret_data['N_m'][i]))
 
+```python
+t = np.arange(0,80000,1000)
+
+def deriv(w,t,ka,kb,kc,n1,n2,n3): 
+    x,y,z = w
+    return np.array([ka*(1-x/n1)*x-kb*y*x/n2-kc*x*z/n3,
+                     kb*(1-y/n2)*y-ka*y*x/n1-kc*y*z/n3,
+                     kc*(1-z/n3)*z-ka*z*x/n1-kb*y*z/n2])
 
 fig = plt.figure(figsize=(10, 18))
-plt.subplots_adjust(hspace=0.5)
+plt.subplots_adjust(hspace=0.2)
 
 ax1 = fig.add_subplot(3,1,1)
+p = ret_data['k'][:3] + ret_data['N_m'][:3] + [0.02,0.02,0.02]
+ka,kb,kc,n1,n2,n3,x0,y0,z0=p
+yinit = np.array([x0,y0,z0]) # initial vals
+yyy = odeint(deriv,yinit,t,args=(ka,kb,kc,n1,n2,n3))
+ax1.plot(t,yyy[:,0],marker = next(markers),label="$argA^{fbr}$")
+ax1.plot(t,yyy[:,1],marker = next(markers),label="$cysE-mut$")
+ax1.plot(t,yyy[:,2],marker = next(markers),label="$myrcene$")
+ax1.set_xlabel('time/(s)')
+ax1.set_ylabel('concentration')
+ax1.set_title('Three engineer e.colis\' real-time concentrations comparison antibacterial')
+_ = ax1.legend(loc=2)
 
-ax1.set_ylim(0,0.00002)
-ax1.plot(t, derivative(t,0,k1,k2,k3),marker = next(markers),label='$argA^{fbr}$ <antibio>')
-ax1.plot(t, derivative(t,1,k2,k1,k3),marker = next(markers),label='$cysE-mut$ <antibio>')
-ax1.plot(t, derivative(t,2,k3,k1,k2),marker = next(markers),label='$myrcene$ <antibio>')
-leg = ax1.legend(loc='upper left',fancybox=True, framealpha=1, shadow=True, borderpad=1);
-ax1.set_xlabel('Time/(s)')
-ax1.set_ylabel("Growth rate of $argA^{fbr}$ <antibio>,\n$cysE-mut$ <antibio>, $myrcene$ <antibio>")
-ax1.set_title("Plotting the changes of growth rates of $argA^{fbr}$ <antibio>,\n$cysE-mut$ <antibio>, $myrcene$ <antibio> as time passes")
 
 ax2 = fig.add_subplot(3,1,2)
-ax2.set_ylim(0,0.00004)
-ax2.plot(t, derivative(t,3,k4,k5,k6),marker = next(markers),label='$argA^{fbr}$')
-ax2.plot(t, derivative(t,4,k5,k4,k6),marker = next(markers),label='$cysE-mut$')
-ax2.plot(t, derivative(t,5,k6,k4,k5),marker = next(markers),label='$myrcene$')
-leg = ax2.legend(loc='upper left',fancybox=True, framealpha=1, shadow=True, borderpad=1);
-ax2.set_xlabel('Time/(s)')
-ax2.set_ylabel("Growth rate of $argA^{fbr}$,\n$cysE-mut$, and $myrcene$")
-ax2.set_title("Plotting the changes of growth rates of $argA^{fbr}$,\n$cysE-mut$, $myrcene$ as time passes")
+
+p = ret_data['k'][3:] + ret_data['N_m'][3:] + [0.02,0.02,0.02]
+
+ka,kb,kc,n1,n2,n3,x0,y0,z0=p
+yinit = np.array([x0,y0,z0]) # initial vals
+yyy = odeint(deriv,yinit,t,args=(ka,kb,kc,n1,n2,n3))
+ax2.plot(t,yyy[:,0],marker = next(markers),label="$argA^{fbr}$")
+ax2.plot(t,yyy[:,1],marker = next(markers),label="$cysE-mut$")
+ax2.plot(t,yyy[:,2],marker = next(markers),label="$myrcene$")
+ax2.set_xlabel('time/(s)')
+ax2.set_ylabel('concentration')
+ax2.set_title('Three engineer e.colis\' real-time concentrations comparison no antibacterial')
+_ = ax2.legend(loc=2)
+```
+
+
+    
+![svg](main_files/main_25_0.svg)
+    
+
+
+
+```python
+t = np.arange(0,500000,5000)
+
+def deriv(w,t,ka,kb,kc,n1,n2,n3,offset1=0,offset2=0):
+    x,y,z = w
+    y+=offset1
+    z+=offset2
+    return np.array([ka*(1-x/n1)*x-kb*y*x/n2-kc*x*z/n3,
+                     kb*(1-y/n2)*y-ka*y*x/n1-kc*y*z/n3,
+                     kc*(1-z/n3)*z-ka*z*x/n1-kb*y*z/n2])
+
+fig = plt.figure(figsize=(10, 18))
+plt.subplots_adjust(hspace=0.2)
+
+ax1 = fig.add_subplot(3,1,1)
+p = ret_data['k'][:3] + ret_data['N_m'][:3] + [0.02,0.02,0.02]
+ka,kb,kc,n1,n2,n3,x0,y0,z0=p
+yinit = np.array([x0,y0,z0]) # initial vals
+yyy1 = odeint(deriv,yinit,t,args=(ka,kb,kc,n1,n2,n3))
+ax1.plot(t,yyy1[:,0],marker = next(markers),label="$argA^{fbr}$")
+ax1.plot(t,yyy1[:,1],marker = next(markers),label="$cysE-mut$")
+ax1.plot(t,yyy1[:,2],marker = next(markers),label="$myrcene$")
+ax1.plot([0,500000],[0.6,0.6],"g--")
+ax1.plot([0,500000],[0,0],"g--")
+ax1.text(400000,0.6,'y = 0.6')
+ax1.text(400000,0,'y = 0\n')
+ax1.set_xlabel('time/(s)')
+ax1.set_ylabel('concentration')
+ax1.set_title('Three engineer e.colis\' real-time concentrations comparison antibacterial')
+_ = ax1.legend(loc=2)
+
+
+ax2 = fig.add_subplot(3,1,2)
+
+p = ret_data['k'][3:] + ret_data['N_m'][3:] + [0.02,0.02,0.02]
+
+ka,kb,kc,n1,n2,n3,x0,y0,z0=p
+yinit = np.array([x0,y0,z0]) # initial vals
+yyy2 = odeint(deriv,yinit,t,args=(ka,kb,kc,n1,n2,n3))
+ax2.plot(t,yyy2[:,0],marker = next(markers),label="$argA^{fbr}$")
+ax2.plot(t,yyy2[:,1],marker = next(markers),label="$cysE-mut$")
+ax2.plot(t,yyy2[:,2],marker = next(markers),label="$myrcene$")
+ax2.plot([0,500000],[0.8,0.8],"g--")
+ax2.plot([0,500000],[0,0],"g--")
+ax2.text(400000,0.8,'y = 0.8')
+ax2.text(400000,0,'y = 0\n')
+ax2.set_xlabel('time/(s)')
+ax2.set_ylabel('concentration')
+ax2.set_title('Three engineer e.colis\' real-time concentrations comparison no antibacterial')
+_ = ax2.legend(loc=2)
+```
+
+
+    
+![svg](main_files/main_26_0.svg)
+    
+
+
+
+```python
+from 
+```
+
+
+```python
+yyy1
 ```
 
 
 
 
-​    
-![svg](main_files/main_24_1.svg)
-​    
+    array([[2.00000000e-02, 2.00000000e-02, 2.00000000e-02],
+           [5.38249907e-02, 4.43143562e-02, 5.11295740e-02],
+           [1.19040813e-01, 8.06894407e-02, 1.07416819e-01],
+           [1.98989292e-01, 1.11047993e-01, 1.70566702e-01],
+           [2.60464413e-01, 1.19671240e-01, 2.12080692e-01],
+           [2.97077531e-01, 1.12375490e-01, 2.29779214e-01],
+           [3.19249526e-01, 9.94242627e-02, 2.34562927e-01],
+           [3.35017023e-01, 8.58992434e-02, 2.33821353e-01],
+           [3.48011122e-01, 7.34642306e-02, 2.30727097e-01],
+           [3.59629101e-01, 6.25025854e-02, 2.26489717e-01],
+           [3.70391210e-01, 5.29985715e-02, 2.21586101e-01],
+           [3.80501585e-01, 4.48250000e-02, 2.16235252e-01],
+           [3.90053995e-01, 3.78310948e-02, 2.10563427e-01],
+           [3.99103753e-01, 3.18691394e-02, 2.04659640e-01],
+           [4.07692078e-01, 2.68026130e-02, 1.98594332e-01],
+           [4.15854056e-01, 2.25084786e-02, 1.92425978e-01],
+           [4.23621139e-01, 1.88774424e-02, 1.86203812e-01],
+           [4.31021891e-01, 1.58133973e-02, 1.79969311e-01],
+           [4.38082227e-01, 1.32324921e-02, 1.73757257e-01],
+           [4.44825554e-01, 1.10620556e-02, 1.67596614e-01],
+           [4.51272919e-01, 9.23943382e-03, 1.61511325e-01],
+           [4.57443169e-01, 7.71086703e-03, 1.55521002e-01],
+           [4.63353153e-01, 6.43039806e-03, 1.49641557e-01],
+           [4.69017910e-01, 5.35892258e-03, 1.43885712e-01],
+           [4.74450903e-01, 4.46312552e-03, 1.38263552e-01],
+           [4.79664146e-01, 3.71488816e-03, 1.32782813e-01],
+           [4.84668458e-01, 3.09039286e-03, 1.27449327e-01],
+           [4.89473594e-01, 2.56955869e-03, 1.22267277e-01],
+           [4.94088358e-01, 2.13547441e-03, 1.17239450e-01],
+           [4.98520828e-01, 1.77391757e-03, 1.12367480e-01],
+           [5.02778387e-01, 1.47294660e-03, 1.07652004e-01],
+           [5.06867847e-01, 1.22255048e-03, 1.03092824e-01],
+           [5.10795552e-01, 1.01433509e-03, 9.86890513e-02],
+           [5.14567444e-01, 8.41269729e-04, 9.44392132e-02],
+           [5.18189112e-01, 6.97489842e-04, 9.03413411e-02],
+           [5.21665856e-01, 5.78098330e-04, 8.63930583e-02],
+           [5.25002731e-01, 4.78993789e-04, 8.25916580e-02],
+           [5.28204574e-01, 3.96759230e-04, 7.89341564e-02],
+           [5.31276038e-01, 3.28549903e-04, 7.54173450e-02],
+           [5.34221610e-01, 2.72013036e-04, 7.20378280e-02],
+           [5.37045643e-01, 2.25139090e-04, 6.87920929e-02],
+           [5.39752343e-01, 1.86292335e-04, 6.56765065e-02],
+           [5.42345820e-01, 1.54111651e-04, 6.26873612e-02],
+           [5.44830055e-01, 1.27462536e-04, 5.98208983e-02],
+           [5.47208935e-01, 1.05399319e-04, 5.70733331e-02],
+           [5.49486245e-01, 8.71377324e-05, 5.44408710e-02],
+           [5.51665677e-01, 7.20261698e-05, 5.19197256e-02],
+           [5.53750828e-01, 5.95242224e-05, 4.95061324e-02],
+           [5.55745206e-01, 4.91818697e-05, 4.71963627e-02],
+           [5.57652230e-01, 4.06281355e-05, 4.49867306e-02],
+           [5.59475225e-01, 3.35567509e-05, 4.28736080e-02],
+           [5.61217427e-01, 2.77136933e-05, 4.08534289e-02],
+           [5.62881988e-01, 2.28847017e-05, 3.89226951e-02],
+           [5.64471972e-01, 1.88940913e-05, 3.70779848e-02],
+           [5.65990351e-01, 1.55969441e-05, 3.53159551e-02],
+           [5.67440012e-01, 1.28726918e-05, 3.36333465e-02],
+           [5.68823754e-01, 1.06224073e-05, 3.20269848e-02],
+           [5.70144285e-01, 8.76623747e-06, 3.04937823e-02],
+           [5.71404229e-01, 7.23346393e-06, 2.90307439e-02],
+           [5.72606091e-01, 5.96837544e-06, 2.76349612e-02],
+           [5.73752366e-01, 4.92365536e-06, 2.63036228e-02],
+           [5.74845409e-01, 4.06139236e-06, 2.50340047e-02],
+           [5.75887517e-01, 3.34984195e-06, 2.38234754e-02],
+           [5.76880883e-01, 2.76271364e-06, 2.26694921e-02],
+           [5.77827636e-01, 2.27830231e-06, 2.15696026e-02],
+           [5.78729818e-01, 1.87875407e-06, 2.05214450e-02],
+           [5.79589399e-01, 1.54921973e-06, 1.95227421e-02],
+           [5.80408275e-01, 1.27738626e-06, 1.85712999e-02],
+           [5.81188266e-01, 1.05317914e-06, 1.76650100e-02],
+           [5.81931123e-01, 8.68263244e-07, 1.68018448e-02],
+           [5.82638531e-01, 7.15646276e-07, 1.59798522e-02],
+           [5.83312099e-01, 5.89695115e-07, 1.51971659e-02],
+           [5.83953372e-01, 4.85896136e-07, 1.44519966e-02],
+           [5.84563830e-01, 4.00414273e-07, 1.37426249e-02],
+           [5.85144892e-01, 3.30079142e-07, 1.30674047e-02],
+           [5.85697920e-01, 2.72074878e-07, 1.24247534e-02],
+           [5.86224213e-01, 2.24201800e-07, 1.18131577e-02],
+           [5.86725022e-01, 1.84709906e-07, 1.12311657e-02],
+           [5.87201528e-01, 1.52200023e-07, 1.06774057e-02],
+           [5.87654903e-01, 1.25414368e-07, 1.01505395e-02],
+           [5.88086235e-01, 1.03330949e-07, 9.64930403e-03],
+           [5.88496539e-01, 8.51309356e-08, 9.17248273e-03],
+           [5.88886835e-01, 7.01304789e-08, 8.71891610e-03],
+           [5.89258032e-01, 5.77922320e-08, 8.28754123e-03],
+           [5.89611094e-01, 4.76104399e-08, 7.87723913e-03],
+           [5.89946867e-01, 3.92213717e-08, 7.48702964e-03],
+           [5.90266178e-01, 3.23113533e-08, 7.11595008e-03],
+           [5.90569819e-01, 2.66158257e-08, 6.76307888e-03],
+           [5.90858544e-01, 2.19209031e-08, 6.42754155e-03],
+           [5.91133072e-01, 1.80516952e-08, 6.10850210e-03],
+           [5.91394095e-01, 1.48628183e-08, 5.80516268e-03],
+           [5.91642265e-01, 1.22410695e-08, 5.51676715e-03],
+           [5.91878179e-01, 1.00821319e-08, 5.24259098e-03],
+           [5.92102462e-01, 8.30382723e-09, 4.98194233e-03],
+           [5.92315670e-01, 6.83905472e-09, 4.73416335e-03],
+           [5.92518346e-01, 5.63243448e-09, 4.49862536e-03],
+           [5.92711001e-01, 4.63868991e-09, 4.27473347e-03],
+           [5.92894109e-01, 3.82173309e-09, 4.06193572e-03],
+           [5.93068163e-01, 3.14782466e-09, 3.85965959e-03],
+           [5.93233597e-01, 2.59241544e-09, 3.66740215e-03]])
+
 
 
 
 ```python
-tt = np.linspace(0,26000,80)
-scale1, scale2, scale3 = 1, 1, 1
-quick_logistic = lambda t,scale=1.:scale*logistic(t, ret_data['a'][0],ret_data['k'][0], ret_data['N_m'][0], ret_data['offset'][0])
+THRESHOLD = 1
+t = np.arange(0,500000,1)
 
-derivative = lambda t,i,k1,k2,k3,scale=1: k1 * quick_logistic(t,scale) * (1- quick_logistic(t,scale)/ret_data['N_m'][i]-(k2/k1)*(quick_logistic(t,scale)/ret_data['N_m'][i])-(k3/k1)*(quick_logistic(t,scale)/ret_data['N_m'][i]))
+def add_offset(params,threshold=THRESHOLD):
+    o1,o2 = params
+    def deriv(w,t,ka,kb,kc,n1,n2,n3,offset1=0,offset2=0):
+        x,y,z = w
+        y+=offset1
+        z+=offset2
+        return np.array([ka*(1-x/n1)*x-kb*y*x/n2-kc*x*z/n3,
+                     kb*(1-y/n2)*y-ka*y*x/n1-kc*y*z/n3,
+                     kc*(1-z/n3)*z-ka*z*x/n1-kb*y*z/n2])
+    p = ret_data['k'][3:] + ret_data['N_m'][3:] + [0.02,0.02,0.02]
+    ka,kb,kc,n1,n2,n3,x0,y0,z0=p
+    yinit = np.array([x0,y0,z0])
+    yyy = odeint(deriv,yinit,t,args=(ka,kb,kc,n1,n2,n3,o1,o2))
+    for i in range(1,yyy.shape[0]):
+        j = min(yyy[i])
+        if j <= 0:
+             return t[i]
+             break
+```
 
-def Integral(x,i,k1,k2,k3,scale=1):
-    f = lambda x: derivative(x,i,k1,k2,k3,scale)
-    res = np.zeros_like(x)
-    for j,val in enumerate(x):
-        y,err = integrate.quad(f,0,val)
-        res[j] = y
-    return res
 
-fig = plt.figure(figsize=(10, 18))
-plt.subplots_adjust(hspace=0.5)
-
-ax1 = fig.add_subplot(3,1,1)
-ax1.set_ylim(0,0.2)
-all_val = list(zip(Integral(tt,0,k1,k2,k3),Integral(tt,1,k2,k1,k3),Integral(tt,2,k3,k1,k2)))
-for i in range(1,len(all_val)):
-    if min(all_val[i]) <= 0:
-        ax1.text(tt[i],min(all_val[i]),'({},\n {})'.format(tt[i],min(all_val[i])))
-        break
-ax1.plot(tt, Integral(tt,0,k1,k2,k3),marker = next(markers),label='$argA^{fbr}$ <antibio>')
-ax1.plot(tt, Integral(tt,1,k2,k1,k3),marker = next(markers),label='$cysE-mut$ <antibio>')
-ax1.plot(tt, Integral(tt,2,k3,k1,k2),marker = next(markers),label='$myrcene$ <antibio>')
-leg = ax1.legend(loc='upper left',fancybox=True, framealpha=1, shadow=True, borderpad=1);
-ax1.set_xlabel('Time/(s)')
-ax1.set_ylabel("concentration of $argA^{fbr}$ <antibio>,\n$cysE-mut$ <antibio>, $myrcene$ <antibio>")
-ax1.set_title("Plotting the changes of concentration of $argA^{fbr}$ <antibio>,\n$cysE-mut$ <antibio>, $myrcene$ <antibio> as time passes")
-
-ax2 = fig.add_subplot(3,1,2)
-ax2.set_ylim(0,0.35)
-all_val = list(zip(Integral(tt,3,k4,k5,k6),Integral(tt,4,k5,k4,k6),Integral(tt,5,k6,k4,k5)))
-for i in range(1,len(all_val)):
-    if min(all_val[i]) <= 0:
-        ax2.text(tt[i],min(all_val[i]),'({},\n {})'.format(tt[i],min(all_val[i])))
-        break
-ax2.plot(tt, Integral(tt,3,k4,k5,k6),marker = next(markers),label='$argA^{fbr}$')
-ax2.plot(tt, Integral(tt,4,k5,k4,k6),marker = next(markers),label='$cysE-mut$')
-ax2.plot(tt, Integral(tt,5,k6,k4,k5),marker = next(markers),label='$myrcene$')
-leg = ax2.legend(loc='upper left',fancybox=True, framealpha=1, shadow=True, borderpad=1);
-ax2.set_xlabel('Time/(s)')
-ax2.set_ylabel("concentration of $argA^{fbr}$,\n$cysE-mut$, and $myrcene$")
-ax2.set_title("Plotting the changes of concentration of $argA^{fbr}$,\n$cysE-mut$, $myrcene$ as time passes")
+```python
+add_offset((0.,0))
 ```
 
 
 
 
-​    
-![svg](main_files/main_25_1.svg)
-​    
+    326326
+
+
+
+
+```python
+def maximize(f,init_args):
+    l = 1e-5
+    x,y = init_args
+    for i in range(10,100000):
+        l*=0.9
+        arr = np.array([[x+l,y+l],[x+l,y-l],[x+l,y],[x,y+l],[x,y-l],[x,y],[x-l,y+l],[x-l,y-l],[x-l,y]])
+        f_group = map(f,arr)
+        x,y = arr[np.argmax(f)]
+    return x,y
+
+res = maximize(add_offset,(0,0))
+add_offset(res)
+```
+
+
+
+
+    150956
+
+
+
+
+```python
+optimize.newton(f, x0, args=(y,))
+```
+
+
+
+
+    124206
+
+
